@@ -109,6 +109,30 @@
     <ClCompile Include="LNmaterial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LNlightDiffuse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNlightSpecular.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNlightexercise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNlightCastDirection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNlightCastPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNlightCastSpot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNlightCastSpotSoft.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNmultipleLight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="6.3.coordinate_systems.vert" />
@@ -129,5 +153,17 @@
     <None Include="3.1.materials.frag" />
     <None Include="3.1.lamp.frag" />
     <None Include="3.1.lamp.vert" />
+    <None Include="lightdiffuse.vert" />
+    <None Include="lightdiffuse.frag" />
+    <None Include="lightspecular.vert" />
+    <None Include="lightspecular.frag" />
+    <None Include="lightexercise.vert" />
+    <None Include="lightexercise.frag" />
+    <None Include="lightcastdirection.vert" />
+    <None Include="lightcastdirection.frag" />
+    <None Include="lightcastpoint.vert" />
+    <None Include="lightcastpoint.frag" />
+    <None Include="multiplelight.vert" />
+    <None Include="multiplelight.frag" />
   </ItemGroup>
 </Project>
