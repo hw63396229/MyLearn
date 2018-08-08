@@ -133,6 +133,12 @@
     <ClCompile Include="LNmultipleLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LNdepthTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawTooth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="6.3.coordinate_systems.vert" />
@@ -165,5 +171,9 @@
     <None Include="lightcastpoint.frag" />
     <None Include="multiplelight.vert" />
     <None Include="multiplelight.frag" />
+    <None Include="1.1.depth_testing.frag" />
+    <None Include="1.1.depth_testing.vert" />
+    <None Include="tooth.vert" />
+    <None Include="tooth.frag" />
   </ItemGroup>
 </Project>

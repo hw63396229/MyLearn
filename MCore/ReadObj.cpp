@@ -10,7 +10,7 @@ bool ReadObj::ReadMeshData(std::string & path, MeshData & data)
 	while (std::getline(in, line))
 	{
 		//std::stringstream  ss(line);
-		ss.clear();
+		ss.str("");
 		ss << line;
 		std::string token;
 

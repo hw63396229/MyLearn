@@ -6,13 +6,15 @@ bool ReadObj::ReadMeshData(std::string & path, MeshData & data)
 	std::ifstream in(path.c_str());
 
 	std::string line;
-	std::stringstream ss;
+	//std::stringstream ss;
 	while (std::getline(in, line))
 	{
-		//std::stringstream  ss(line);
-		ss.clear();
-		ss << line;
+		std::stringstream  ss(line);
+		//ss.str("");
+		//ss << line;
 		std::string token;
+
+		std::string t = ss.str();
 
 		ss >> token;
 
