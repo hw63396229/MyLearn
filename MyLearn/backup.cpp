@@ -622,142 +622,236 @@ void dicomParse()
 
 #pragma comment(lib, "zlib.lib")
 
-
-//int main(int argc, char* argv[])
-//{
-//	dicomParse();
-//
-//	char uid[100];
-//	DcmFileFormat fileformat;
-//	DcmMetaInfo *metainfo = fileformat.getMetaInfo();
-//	DcmDataset *dataset = fileformat.getDataset();
-//
-//	//***meta group******/
-//	metainfo->putAndInsertString(DCM_FileMetaInformationVersion, "us test dcm file");
-//	metainfo->putAndInsertString(DCM_MediaStorageSOPClassUID, UID_RETIRED_UltrasoundImageStorage);
-//	metainfo->putAndInsertString(DCM_MediaStorageSOPInstanceUID, dcmGenerateUniqueIdentifier(uid, SITE_INSTANCE_UID_ROOT));
-//	metainfo->putAndInsertString(DCM_TransferSyntaxUID, UID_LittleEndianExplicitTransferSyntax);
-//	metainfo->putAndInsertString(DCM_ImplementationClassUID, "999.999");
-//
-//	//***identifying group****/
-//	dataset->putAndInsertString(DCM_ImageType, "ORIGINAL\\PRIMARY\\TEE\\0011");
-//	dataset->putAndInsertString(DCM_SOPClassUID, UID_RETIRED_UltrasoundImageStorage);//UID_SecondaryCaptureImageStorage);
-//	dataset->putAndInsertString(DCM_SOPInstanceUID, dcmGenerateUniqueIdentifier(uid, SITE_INSTANCE_UID_ROOT));
-//	dataset->putAndInsertString(DCM_StudyID, "398474");
-//	dataset->putAndInsertString(DCM_StudyDate, "20100823");
-//	dataset->putAndInsertString(DCM_StudyTime, "080322");
-//	dataset->putAndInsertString(DCM_Modality, "US");//OT
-//
-//	dataset->putAndInsertString(DCM_Manufacturer, "ACME product");
-//	dataset->putAndInsertString(DCM_ReferringPhysicianName, "ANONY");
-//	dataset->putAndInsertString(DCM_StudyDescription, "STUDY description");
-//	dataset->putAndInsertString(DCM_SeriesDescription, "SERIES DESCRIPTION");
-//	dataset->putAndInsertString(DCM_StageNumber, "1");
-//	dataset->putAndInsertString(DCM_NumberOfStages, "1");
-//	dataset->putAndInsertString(DCM_ViewNumber, "1");
-//	dataset->putAndInsertString(DCM_NumberOfViewsInStage, "1");
-//	/***patient group*****/
-//	dataset->putAndInsertString(DCM_PatientID, "PatientID");
-//	dataset->putAndInsertString(DCM_PatientName, "PatientName");
-//	dataset->putAndInsertString(DCM_PatientSex, "M");
-//	dataset->putAndInsertString(DCM_PatientBirthDate, "20000302");
-//
-//	/************************************************************************/
-//	/* acquisiton group                                                                     */
-//	/************************************************************************/
-//	//DCM_ProtocolName
-//	/************************************************************************/
-//	/* relation group                                                                      */
-//	/************************************************************************/
-//	dataset->putAndInsertString(DCM_StudyInstanceUID, "999.999.2.19941105.112000");
-//	dataset->putAndInsertString(DCM_SeriesInstanceUID, "999.999.2.19941105.112000.2");
-//	dataset->putAndInsertString(DCM_SeriesNumber, "2");
-//	dataset->putAndInsertString(DCM_AccessionNumber, "1");
-//	//dataset->putAndInsertString(DCM_InstanceNumber,);
-//
-//	//调窗
-//	//dataset->putAndInsertString(DCM_WindowCenter, "256");
-//	//dataset->putAndInsertString(DCM_WindowWidth, "128");
-//
-//	const int width = 256;
-//	const int height = 256;
-//	dataset->putAndInsertString(DCM_InstanceNumber, "1");
-//	//dataset->putAndInsertString(DCM_PatientOrientation,"HFL");
-//	dataset->putAndInsertString(DCM_PhotometricInterpretation, "RGB");
-//	dataset->putAndInsertUint16(DCM_SamplesPerPixel, 3);
-//	dataset->putAndInsertUint16(DCM_BitsAllocated, 8);
-//	dataset->putAndInsertUint16(DCM_BitsStored, 8);
-//	dataset->putAndInsertUint16(DCM_HighBit, 7);
-//	dataset->putAndInsertUint16(DCM_PixelRepresentation, 0);
-//	dataset->putAndInsertUint16(DCM_PlanarConfiguration, 0);
-//	dataset->putAndInsertString(DCM_PixelAspectRatio, "4\\3");
-//	dataset->putAndInsertUint16(DCM_Rows, height);//
-//	dataset->putAndInsertUint16(DCM_Columns, width);//
-//
-//
-//	BYTE* pData = new BYTE[width*height * 3];
-//	memset(pData, 0, width*height * 3);
-//	for (int y = 0; y < height; y++) {
-//		//memset(pData+ y*width*3, y & 0xff0000,width*3);
-//		for (int x = 0; x<width * 3; x++)
-//		{
-//			if (x % 3 == 0)
-//				pData[y*width * 3 + x] = 0xff;
-//			else
-//				pData[y*width * 3 + x] = rand() % 256;
-//		}
-//	}
-//	dataset->putAndInsertUint8Array(DCM_PixelData, pData, width*height * 3);
-//	delete[] pData;
-//	OFCondition status = fileformat.saveFile("d:\\test.dcm",
-//		EXS_LittleEndianImplicit, EET_UndefinedLength, EGL_withoutGL);
-//	if (status.bad())
-//	{
-//		printf("\n cannot write dicom file");
-//		return false;
-//	}
-//	return true;
-//}
-
 #include <dcmtk/config/osconfig.h>
 #include <dcmtk/dcmdata/dctk.h>
 
-#define PRIVATE_CREATOR_NAME "Your Company Name"  
+//#define PRIVATE_CREATOR_NAME "Your Company Name"  
+//
+//#define PRIVATE_CREATOR_TAG  0x0029, 0x0010  
+//#define PRIVATE_ELEMENT1_TAG 0x0029, 0x1000  
+//#define PRIVATE_ELEMENT2_TAG 0x0029, 0x1010  
+//#define PRIVATE_ELEMENT3_TAG 0x0029, 0x1020  
+//
+//#define PRV_PrivateCreator   DcmTag(PRIVATE_CREATOR_TAG)  
+//#define PRV_PrivateElement1  DcmTag(PRIVATE_ELEMENT1_TAG, PRIVATE_CREATOR_NAME)  
+//#define PRV_PrivateElement2  DcmTag(PRIVATE_ELEMENT2_TAG, PRIVATE_CREATOR_NAME)  
+//#define PRV_PrivateElement3  DcmTag(PRIVATE_ELEMENT3_TAG, PRIVATE_CREATOR_NAME)  
 
-#define PRIVATE_CREATOR_TAG  0x0029, 0x0010  
-#define PRIVATE_ELEMENT1_TAG 0x0029, 0x1000  
-#define PRIVATE_ELEMENT2_TAG 0x0029, 0x1010  
-#define PRIVATE_ELEMENT3_TAG 0x0029, 0x1020  
-
-#define PRV_PrivateCreator   DcmTag(PRIVATE_CREATOR_TAG)  
-#define PRV_PrivateElement1  DcmTag(PRIVATE_ELEMENT1_TAG, PRIVATE_CREATOR_NAME)  
-#define PRV_PrivateElement2  DcmTag(PRIVATE_ELEMENT2_TAG, PRIVATE_CREATOR_NAME)  
-#define PRV_PrivateElement3  DcmTag(PRIVATE_ELEMENT3_TAG, PRIVATE_CREATOR_NAME)  
-
-#define PRIVATE_TAG 0x0009,0x11A0
-#define PRIVATE_ELEMENT DcmTag(PRIVATE_TAG, nullptr)
+//Please note that for private tags the value representation(VR) has to be specified explicitly to be complete.
+//private define
+#define PRIVATE_ELEMENT_NAME     0x0009, 0x0011  //LO
+#define PRIVATE_ELEMENT_SQ       0x0009, 0x11A0  //SQ
+#define PRIVATE_ELEMENT_BLOCK1   0x0009, 0x11A1  //LO
+#define PRIVATE_ELEMENT_BLOCK2   0x0009, 0x11A2  //UL
+#define PRIVATE_ELEMENT_BLOCK3   0x0009, 0x11A3  //UN
+#define PRIVATE_ELEMENT_NAME_TAG     DcmTag(PRIVATE_ELEMENT_NAME, EVR_LO)
+#define PRIVATE_ELEMENT_SQ_TAG       DcmTag(PRIVATE_ELEMENT_SQ, EVR_SQ)
+#define PRIVATE_ELEMENT_BLOCK1_TAG   DcmTag(PRIVATE_ELEMENT_BLOCK1, EVR_LO)
+#define PRIVATE_ELEMENT_BLOCK2_TAG   DcmTag(PRIVATE_ELEMENT_BLOCK2, EVR_UL)
+#define PRIVATE_ELEMENT_BLOCK3_TAG   DcmTag(PRIVATE_ELEMENT_BLOCK3, EVR_UC) 
 
 void registerPrivateTags()
 {
 	DcmDataDictionary &dict = dcmDataDict.wrlock();
-	dict.addEntry(new DcmDictEntry(PRIVATE_ELEMENT1_TAG, EVR_SQ, "PrivateText", 1, 1, "private", OFTrue, PRIVATE_CREATOR_NAME));
+	/*dict.addEntry(new DcmDictEntry(PRIVATE_ELEMENT1_TAG, EVR_LO, "PrivateText", 1, 1, "private", OFTrue, PRIVATE_CREATOR_NAME));
 	dict.addEntry(new DcmDictEntry(PRIVATE_ELEMENT2_TAG, EVR_US, "PrivateInteger", 1, 1, "private", OFTrue, PRIVATE_CREATOR_NAME));
-	dict.addEntry(new DcmDictEntry(PRIVATE_ELEMENT3_TAG, EVR_OB, "PrivateBlob", 1, 1, "private", OFTrue, PRIVATE_CREATOR_NAME));
+	dict.addEntry(new DcmDictEntry(PRIVATE_ELEMENT3_TAG, EVR_SQ, "PrivateBlob", 1, 1, "private", OFTrue, PRIVATE_CREATOR_NAME));*/
+
+	dict.addEntry(new DcmDictEntry(PRIVATE_ELEMENT_NAME  , EVR_LO, "PrivateText"  , 1, 1, "private", OFTrue, "CARESTREAM"));
+	dict.addEntry(new DcmDictEntry(PRIVATE_ELEMENT_SQ    , EVR_SQ, "Sequence"     , 1, 1, "private", OFTrue, "CARESTREAM"));
+	dict.addEntry(new DcmDictEntry(PRIVATE_ELEMENT_BLOCK1, EVR_LO, "PrivateBlock1", 1, 1, "private", OFTrue, "CARESTREAM"));
+	dict.addEntry(new DcmDictEntry(PRIVATE_ELEMENT_BLOCK2, EVR_UL, "PrivateBlock2", 1, 1, "private", OFTrue, "CARESTREAM"));
+	dict.addEntry(new DcmDictEntry(PRIVATE_ELEMENT_BLOCK3, EVR_UN, "PrivateBlock3", 1, 1, "private", OFTrue, "CARESTREAM"));
 	dcmDataDict.unlock();
 }
 
 void addPrivateElements(DcmItem &item)
 {
-	if (!item.tagExists(PRV_PrivateCreator))
-	{
-		item.putAndInsertString(PRV_PrivateCreator, PRIVATE_CREATOR_NAME);
-		item.putAndInsertString(PRV_PrivateElement1, "Some Text");
-		item.putAndInsertUint16(PRV_PrivateElement2, 12345);
-		item.putAndInsertUint8Array(PRV_PrivateElement3, NULL /*data*/, 0 /*length*/);
-	}
+	//if (!item.tagExists(PRV_PrivateCreator))
+	//{
+	//	item.putAndInsertString(PRV_PrivateCreator, PRIVATE_CREATOR_NAME);
+	//	item.putAndInsertString(PRV_PrivateElement1, "Some Text");
+	//	item.putAndInsertUint16(PRV_PrivateElement2, 12345);
+	//	item.putAndInsertUint8Array(PRV_PrivateElement3, NULL /*data*/, 0 /*length*/);
+	//}
 }
 
-int main()
+int main(int argc, char* argv[])
+{
+	dcmEnableUnlimitedCharactersVRGeneration.set(OFFalse);  //translate EVR_UC to EVR_UN
+	dicomParse();	
+	registerPrivateTags();   //注册私有标签
+
+	char uid[100];
+	DcmFileFormat fileformat;
+	DcmMetaInfo *metainfo = fileformat.getMetaInfo();
+	DcmDataset *dataset = fileformat.getDataset();
+	////////////////////////////////
+	DcmItem dt1;
+	OFCondition res;
+	DcmItem* c = &dt1;
+	res = dataset->putAndInsertString(PRIVATE_ELEMENT_NAME_TAG, "TROPHY");
+
+	/*res = dataset->findOrCreateSequenceItem(PRIVATE_ELEMENT_SQ_TAG, c, 0);
+	c->putAndInsertString(PRIVATE_ELEMENT_BLOCK1_TAG, "3DACQ_FUNCTION_MODE");
+	c->putAndInsertUint32(PRIVATE_ELEMENT_BLOCK2_TAG, 5);
+	res = c->putAndInsertString(PRIVATE_ELEMENT_BLOCK3_TAG, "Model");
+
+	res = dataset->findOrCreateSequenceItem(PRIVATE_ELEMENT_SQ_TAG, c, -2);
+	c->putAndInsertString(PRIVATE_ELEMENT_BLOCK1_TAG, "3DACQ_SCAN_OBJECT");
+	c->putAndInsertUint32(PRIVATE_ELEMENT_BLOCK2_TAG, 7);
+	res = c->putAndInsertString(PRIVATE_ELEMENT_BLOCK3_TAG, "Plaster");*/
+
+	for (unsigned i = 0; i < 8; i++)
+	{
+		res = dataset->findOrCreateSequenceItem(PRIVATE_ELEMENT_SQ_TAG, c, -2);
+		c->putAndInsertString(PRIVATE_ELEMENT_BLOCK1_TAG, m_v0009Value[3 * i + 0].data.c_str());
+		c->putAndInsertUint32(PRIVATE_ELEMENT_BLOCK2_TAG, *(int*)&m_v0009Value[3 * i + 1].data[0]);
+		Uint32 len = m_v0009Value[3 * i + 2].data.size();
+		res = c->putAndInsertString(PRIVATE_ELEMENT_BLOCK3_TAG, m_v0009Value[3 * i + 2].data.c_str(), len);
+	}
+
+	///////////////////////////////
+
+	//***meta group******/
+	//0X0002
+	metainfo->putAndInsertString(DCM_FileMetaInformationVersion, "us test dcm file");
+	metainfo->putAndInsertString(DCM_MediaStorageSOPClassUID, UID_RawDataStorage);
+	metainfo->putAndInsertString(DCM_MediaStorageSOPInstanceUID, "1.2.250.1.90.2.0.10004.1516609739.522");//dcmGenerateUniqueIdentifier(uid, SITE_INSTANCE_UID_ROOT));
+	metainfo->putAndInsertString(DCM_TransferSyntaxUID, UID_LittleEndianExplicitTransferSyntax);
+	metainfo->putAndInsertString(DCM_ImplementationClassUID, "1.2.276.0.7230010.3.0.3.6.0");
+	metainfo->putAndInsertString(DCM_ImplementationVersionName, "OFFIS_DCMTK_360");
+
+	//***identifying group****/
+	//0x0008
+	dataset->putAndInsertString(DCM_SpecificCharacterSet, "ISO_IR_192");
+	dataset->putAndInsertString(DCM_InstanceCreationDate, "20180122");
+	dataset->putAndInsertString(DCM_InstanceCreationTime, "162859");
+	dataset->putAndInsertString(DCM_SOPClassUID, UID_RawDataStorage);//UID_SecondaryCaptureImageStorage);
+	dataset->putAndInsertString(DCM_SOPInstanceUID, "1.2.250.1.90.2.0.10004.1516609739.522");// dcmGenerateUniqueIdentifier(uid, SITE_INSTANCE_UID_ROOT));
+	dataset->putAndInsertString(DCM_StudyDate, "17060117");
+	dataset->putAndInsertString(DCM_SeriesDate, "20180122");
+	dataset->putAndInsertString(DCM_AcquisitionDate, "20180122");
+	dataset->putAndInsertString(DCM_ContentDate, "20180122");
+	dataset->putAndInsertString(DCM_AcquisitionDateTime, "20180122162859");
+	dataset->putAndInsertString(DCM_StudyTime, "205726");
+	dataset->putAndInsertString(DCM_SeriesTime, "162859");
+	dataset->putAndInsertString(DCM_ContentTime, "162859");
+	dataset->putAndInsertString(DCM_AccessionNumber, "dummyaccessionnumber");
+	dataset->putAndInsertString(DCM_Modality, "ES");
+	dataset->putAndInsertString(DCM_Manufacturer, "Carestream Health");
+	dataset->putAndInsertString(DCM_InstitutionName, "TROPHY");
+	dataset->putAndInsertString(DCM_InstitutionAddress, "shang hai pu dong");
+	dataset->putAndInsertString(DCM_ReferringPhysicianName, "James^Bond^007^Dr");
+	dataset->putAndInsertString(DCM_StudyDescription, "dummydescription");
+	dataset->putAndInsertString(DCM_SeriesDescription, "3D camera acquisition");
+	dataset->putAndInsertString(DCM_ManufacturerModelName, "CS 3600");
+	dataset->putAndInsertString(DCM_CreatorVersionUID, "1.2.250.1.90.50.2.1.1.0.0");
+
+	/***patient group*****/
+	//0X0010
+	dataset->putAndInsertString(DCM_PatientID, "PatientID");
+	dataset->putAndInsertString(DCM_PatientName, "PatientName");
+	dataset->putAndInsertString(DCM_PatientSex, "M");
+	dataset->putAndInsertString(DCM_PatientBirthDate, "20000302");
+
+	/************************************************************************/
+	//decice group   
+	//0x0018
+	dataset->putAndInsertString(DCM_DeviceSerialNumber, "EANB0210");
+	dataset->putAndInsertString(DCM_SoftwareVersions, "software version");
+	/************************************************************************/
+	//DCM_ProtocolName
+	/************************************************************************/
+	//relation group                                                                      
+	//0x0020
+	dataset->putAndInsertString(DCM_StudyInstanceUID, "dummystudyid");
+	dataset->putAndInsertString(DCM_SeriesInstanceUID, "1.2.250.1.90.3.0.10004.1516609739.523");
+	dataset->putAndInsertString(DCM_StudyID, "dummystudyinstanceid");
+	dataset->putAndInsertString(DCM_SeriesNumber, "1");
+	dataset->putAndInsertString(DCM_InstanceNumber, "1");
+	dataset->putAndInsertString(DCM_ImageOrientationPatient, "1.0\0.0\0.0\0.0\1.0\0.0");
+
+	//0x0040
+	//dataset->findOrCreateSequenceItem(DCM_AcquisitionContextSequence, c, 0);
+	dataset->insertEmptyElement(DCM_AcquisitionContextSequence);
+	dataset->putAndInsertString(DCM_NamesOfIntendedRecipientsOfResults, "");
+
+	//0x0088
+	dataset->findOrCreateSequenceItem(DCM_IconImageSequence, c, 0);
+	res = c->putAndInsertUint16(DCM_SamplesPerPixel, 3);
+	res = c->putAndInsertString(DCM_PhotometricInterpretation, "RGB");
+	res = c->putAndInsertUint16(DCM_PlanarConfiguration, 0);
+	res = c->putAndInsertUint16(DCM_Rows, 200);
+	res = c->putAndInsertUint16(DCM_Columns, 200);
+	res = c->putAndInsertString(DCM_PixelAspectRatio, "1\1");
+	res = c->putAndInsertUint16(DCM_BitsAllocated, 8);
+	res = c->putAndInsertUint16(DCM_BitsStored, 8);
+	res = c->putAndInsertUint16(DCM_HighBit, 7);
+	res = c->putAndInsertUint16(DCM_PixelRepresentation, 0);
+	BYTE* pData = new BYTE[200 * 200 * 3];
+	memset(pData, 0, 200 * 200 * 3);
+	for (int y = 0; y < 200; y++) 
+	{
+		//memset(pData+ y*width*3, y & 0xff0000,width*3);
+		for (int x = 0; x<200 * 3; x++)
+		{
+			if (x % 3 == 0)
+				pData[y*200 * 3 + x] = 0xff;
+			else
+				pData[y*200 * 3 + x] = rand() % 256;
+		}
+	}
+	c->putAndInsertUint8Array(DCM_PixelData, pData, 200 * 200 * 3);
+	delete[] pData;
+
+	//调窗
+	//dataset->putAndInsertString(DCM_WindowCenter, "256");
+	//dataset->putAndInsertString(DCM_WindowWidth, "128");
+
+	//const int width = 256;
+	//const int height = 256;
+	//dataset->putAndInsertString(DCM_InstanceNumber, "1");
+	////dataset->putAndInsertString(DCM_PatientOrientation,"HFL");
+	//dataset->putAndInsertString(DCM_PhotometricInterpretation, "RGB");
+	//dataset->putAndInsertUint16(DCM_SamplesPerPixel, 3);
+	//dataset->putAndInsertUint16(DCM_BitsAllocated, 8);
+	//dataset->putAndInsertUint16(DCM_BitsStored, 8);
+	//dataset->putAndInsertUint16(DCM_HighBit, 7);
+	//dataset->putAndInsertUint16(DCM_PixelRepresentation, 0);
+	//dataset->putAndInsertUint16(DCM_PlanarConfiguration, 0);
+	//dataset->putAndInsertString(DCM_PixelAspectRatio, "4\\3");
+	//dataset->putAndInsertUint16(DCM_Rows, height);//
+	//dataset->putAndInsertUint16(DCM_Columns, width);//
+
+
+	//BYTE* pData = new BYTE[width*height * 3];
+	//memset(pData, 0, width*height * 3);
+	//for (int y = 0; y < height; y++) 
+	//{
+	//	//memset(pData+ y*width*3, y & 0xff0000,width*3);
+	//	for (int x = 0; x<width * 3; x++)
+	//	{
+	//		if (x % 3 == 0)
+	//			pData[y*width * 3 + x] = 0xff;
+	//		else
+	//			pData[y*width * 3 + x] = rand() % 256;
+	//	}
+	//}
+	//dataset->putAndInsertUint8Array(DCM_PixelData, pData, width*height * 3);
+	//delete[] pData;
+	OFCondition status = fileformat.saveFile("d:\\test.dcm",
+		EXS_LittleEndianExplicit, EET_ExplicitLength, EGL_withoutGL);   //SQ length will be not 0xFFFFFFFF with EXS_LittleEndianExplicit and EET_ExplicitLength
+	if (status.bad())
+	{
+		printf("\n cannot write dicom file");
+		return 0;
+	}
+	return 1;
+}
+
+
+/*int main()
 {
 	//Class representing a DICOM Sequence of Items(SQ)
 	DcmItem dt1(DcmTagKey(0x0009, 0x11A1));
@@ -787,7 +881,7 @@ int main()
 	fileformat.print(COUT);
 	getchar();
 	return 0;
-}
+}*/
 
 std::wstring UTF8ToUnicode(const std::string &str)
 {
