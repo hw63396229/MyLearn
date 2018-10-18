@@ -6,14 +6,10 @@ bool ReadObj::ReadMeshData(std::string & path, MeshData & data)
 	std::ifstream in(path.c_str());
 
 	std::string line;
-	std::stringstream ss;
 	while (std::getline(in, line))
 	{
-		//std::stringstream  ss(line);
-		ss.str("");
-		ss << line;
+		std::stringstream  ss(line);
 		std::string token;
-
 		ss >> token;
 
 		if (token == "v") { readPosition(ss, data); continue; } //vertex

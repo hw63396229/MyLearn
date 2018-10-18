@@ -32,7 +32,7 @@ public:
 	int normal;
 };
 
-class _declspec(dllexport) MeshData
+class MeshData
 {
 public:
 	std::vector<VFVector3>    vertices;
@@ -42,7 +42,7 @@ public:
 	//std::vector< std::vector< Index > > indices;
 };
 
-class _declspec(dllexport) ReadObj
+class ReadObj
 {
 public:
 	ReadObj() {}

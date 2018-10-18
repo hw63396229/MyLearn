@@ -24,9 +24,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MCore.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Quaternion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -36,21 +33,21 @@
     <ClInclude Include="WriteObj.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Complex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MCore.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Quaternion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ReadObj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Complex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

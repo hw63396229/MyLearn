@@ -1,6 +1,5 @@
 #pragma once
 
-
 // Quaternion represents an element of the quaternions, along with all the usual
 // vectors space operations (addition, multiplication by scalars, etc.).  The
 // Hamilton product is expressed using the * operator:
