@@ -6,6 +6,8 @@ float lastX = (float)SCR_WIDTH / 2.0f, lastY = (float)SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
 glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 Camera camera;
+int m_button = -1, m_mode = -1, m_action = -1;
+Quaternion r = 1.f;
 
 void DrawToothNormal::DrawNormal(std::string path)
 {
@@ -74,27 +76,37 @@ void DrawToothNormal::DrawNormal(std::string path)
 		shader.setVec3("objectColor", .8f, 0.5f, 0.31f);
 		shader.setVec3("lightColor", 1.f, 1.f, 1.f);
 		
+		
 		glm::mat4 model;
 		shader.setMat4("model", model);
+		
+		r = (camera.pDrag * camera.pClick.conj()) * camera.rLast;
+		float w = r[0];
+		float x = r[1];
+		float y = r[2];
+		float z = r[3];
+		GLfloat M[16] = {
+			1.f - 2.f*y*y - 2.f*z*z, 2.f*x*y + 2.f*w*z, 2.f*x*z - 2.f*w*y, 0.f,
+			2.f*x*y - 2.f*w*z, 1.f - 2.f*x*x - 2.f*z*z, 2.f*y*z + 2.f*w*x, 0.f,
+			2.f*x*z + 2.f*w*y, 2.f*y*z - 2.f*w*x, 1.f - 2.f*x*x - 2.f*y*y, 0.f,
+			0.f, 0.f, 0.f, 1.f
+		};
+		glm::mat4 rot = {
+			M[0], M[1], M[2], M[3],
+			M[4], M[5], M[6], M[7],
+			M[8], M[9], M[10], M[11], 
+			M[12], M[13], M[14], M[15]
+		};
 
 		glm::vec3 eye = glm::vec3(0.f, 0.f, 100.f * camera.zoom);
-		glm::vec3 center = glm::vec3(0.0f, 0.0f, 0.0f);
+		glm::vec3 center = glm::vec3(camera.xslide, camera.yslide, 0.0f);
 		glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
-		glm::mat4 view = calculate_lookAt_matrix(eye, center, up);
-		//std::cout << "eye: " << eye.x << " " << eye.y << " " << eye.z << std::endl;
-		/*float mat[16];
-		glGetFloatv(GL_MODELVIEW_MATRIX, mat);*/
-		std::cout << "pClick: " << camera.pClick.im().x << " " << camera.pClick.im().y << " " << camera.pClick.re() << std::endl;
-		std::cout << "pDrag: " << camera.pDrag.im().x << " " << camera.pDrag.im().y << " " << camera.pDrag.re() << std::endl;
-		std::cout << "pLast: " << camera.pLast.im().x << " " << camera.pLast.im().y << " " << camera.pLast.re() << std::endl;
-		std::cout << "rLast: " << camera.rLast.im().x << " " << camera.rLast.im().y << " " << camera.rLast.re() << std::endl;
-
+		glm::mat4 view = calculate_lookAt_matrix(eye, center, up) * rot;
 
 		glm::mat4 projection = glm::perspective(glm::radians(45.f), (float)SCR_WIDTH / (float)SCR_HEIGHT, .1f, 300.f);
 		shader.setMat4("view", view);
 		shader.setMat4("projection", projection);
 		
-		camera.setView();
 		glDrawElements(GL_TRIANGLES, surface.size(), GL_UNSIGNED_INT, &surface.front());
 
 		glfwSwapBuffers(window);
@@ -113,7 +125,6 @@ void framebuffer_size_callback(GLFWwindow * window, int width, int height)
 	// height will be significantly larger than specified on retina displays.
 	glViewport(0, 0, width, height);
 }
-
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -144,13 +155,13 @@ void mouse_callback(GLFWwindow * window, double xpos, double ypos)
 	lastX = xpos;
 	lastY = ypos;
 
-	camera.motion((int)xpos, (int)ypos);
-	std::cout << "Cursor Pos: " << (int)xpos << " " << (int)ypos << std::endl;
+	if(m_button == GLFW_MOUSE_BUTTON_LEFT && m_action == GLFW_PRESS)
+		camera.motion((int)xpos, (int)ypos);
 }
 
 void scroll_callback(GLFWwindow * window, double xoffset, double yoffset)
 {
-	camera.motion(xoffset, yoffset);
+	//camera.motion(xoffset, yoffset);
 }
 
 void processInput(GLFWwindow * window)
@@ -159,35 +170,51 @@ void processInput(GLFWwindow * window)
 		glfwSetWindowShouldClose(window, true);
 
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		//camera.zoomIn();
-		camera.zoom -= 0.005f;
+	{
+		camera.yslide -= 0.5f;
+		r = 0.f;
+	}
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		//camera.zoomOut();
-		camera.zoom += 0.005f;
+	{
+		camera.yslide += 0.5f;
+		r = 0.f;
+	}
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		camera.motion((int)lastX, (int)lastY);
+	{
+		camera.xslide += 0.5f;
+		r = 0.f;
+	}
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		camera.motion(-(int)lastX, -(int)lastY);
+	{
+		camera.xslide -= 0.5f;
+		r = 0.f;
+	}
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+		camera.zoom -= 0.005f;
+	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+		camera.zoom += 0.005f;
 }
 
 void mouse_button_callback(GLFWwindow * window, int button, int action, int mods)
 {
+	m_button = button;
+	m_mode = mods;
+	m_action = action;
 	if (action == GLFW_PRESS) switch (button)
 	{
-	case GLFW_MOUSE_BUTTON_LEFT:
-		//Mosue left button clicked!"
-		std::cout << "Mouse Left Button Pressed! " << std::endl;
-		camera.mouse(button, mods, (int)lastX, (int)lastY);
-		break;
-	case GLFW_MOUSE_BUTTON_MIDDLE:
-		//"Mosue middle button clicked!"
-		break;
-	case GLFW_MOUSE_BUTTON_RIGHT:
-		//"Mosue right button clicked!"
-		std::cout << "Mouse Right Button Pressed! " << std::endl;
-		break;
-	default:
-		return;
+	    case GLFW_MOUSE_BUTTON_LEFT:
+	    	//Mouse left button clicked!"
+	    	camera.mouse(button, mods, (int)lastX, (int)lastY);
+	    	break;
+	    case GLFW_MOUSE_BUTTON_MIDDLE:
+	    	//"Mouse middle button clicked!"
+	    	break;
+	    case GLFW_MOUSE_BUTTON_RIGHT:
+	    	//"Mouse right button clicked!"
+	    	std::cout << "Mouse Right Button Pressed! " << std::endl;
+	    	break;
+	    default:
+	    	return;
 	}
 	return;
 }

@@ -132,10 +132,10 @@ float CameraEuler::getDist()
 
 void CameraEuler::zoomIn(void)
 {
-	vZoom -= .5f;
+	zoom -= .05f;
 }
 
 void CameraEuler::zoomOut(void)
 {
-	vZoom += .5f;
+	zoom += .05f;
 }

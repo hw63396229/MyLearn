@@ -2,12 +2,14 @@
 #include"Camera.h"
 
 Camera::Camera(void)
-	:pClick(1.f), 
-	 pDrag(1.f),
-	 pLast(1.f),
-	 rLast(1.f),
-	 momentum(1.f),
-	 zoom(1.f) 
+	:pClick(1.f),
+	pDrag(1.f),
+	pLast(1.f),
+	rLast(1.f),
+	momentum(1.f),
+	zoom(1.f),
+	xslide(0.f),
+	yslide(0.f)
     { }
 
 Quaternion Camera::clickToSphere(int x, int y)
@@ -48,7 +50,7 @@ void Camera::setView(void)
 		2.f*x*z + 2.f*w*y, 2.f*y*z - 2.f*w*x, 1.f - 2.f*x*x - 2.f*y*y, 0.f,
 		0.f, 0.f, 0.f, 1.f
 	};
-
+	
 	glMatrixMode(GL_MODELVIEW);
 	glMultMatrixf(M);
 }

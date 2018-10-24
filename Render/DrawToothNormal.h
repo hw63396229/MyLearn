@@ -27,6 +27,8 @@ extern float deltaTime, lastFrame;
 extern float lastX, lastY;
 extern bool firstMouse;
 extern glm::vec3  lightPos;
+extern int m_button, m_mode, m_action;
+extern Quaternion r;
 
 class DrawToothNormal
 {

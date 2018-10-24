@@ -55,4 +55,6 @@ public:
 
 	float zoom, vZoom;
 	// zoom and zoom velocity
+	float xslide, yslide;
+	//camera slide
 };
