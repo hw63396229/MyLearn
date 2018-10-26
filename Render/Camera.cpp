@@ -73,7 +73,7 @@ void Camera::mouse(int button, int state, int x, int y)
 		}
 		else
 			momentum = 1.f;
-
+		
 		rLast = pDrag * pClick.conj() * rLast;
 		pClick = pDrag = 1.f;
 	}

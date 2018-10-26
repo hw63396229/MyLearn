@@ -53,6 +53,9 @@
     <ClInclude Include="Depend.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CallBack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -139,6 +142,18 @@
     <ClCompile Include="DrawTooth.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LNstenciltest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CallBack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNblendingdiscard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNblendingsort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="6.3.coordinate_systems.vert" />
@@ -175,5 +190,12 @@
     <None Include="1.1.depth_testing.vert" />
     <None Include="tooth.vert" />
     <None Include="tooth.frag" />
+    <None Include="StencilTest.frag" />
+    <None Include="Stenciltest.vert" />
+    <None Include="Stencilsinglecolor.frag" />
+    <None Include="Blendingdiscard.frag" />
+    <None Include="Blendingdiscard.vert" />
+    <None Include="Blendingsort.vert" />
+    <None Include="Blendingsort.frag" />
   </ItemGroup>
 </Project>

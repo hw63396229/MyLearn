@@ -27,7 +27,7 @@ void DrawToothNormal::DrawNormal(std::string path)
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	//glfwSetKeyCallback(window, key_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
-	//glfwSetScrollCallback(window, scroll_callback);
+	glfwSetScrollCallback(window, scroll_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	
@@ -161,7 +161,10 @@ void mouse_callback(GLFWwindow * window, double xpos, double ypos)
 
 void scroll_callback(GLFWwindow * window, double xoffset, double yoffset)
 {
-	//camera.motion(xoffset, yoffset);
+	if (yoffset == -1)
+		camera.zoom -= 0.01f;
+	else    //yoffset == 1
+		camera.zoom += 0.01f;
 }
 
 void processInput(GLFWwindow * window)
@@ -200,22 +203,33 @@ void mouse_button_callback(GLFWwindow * window, int button, int action, int mods
 	m_button = button;
 	m_mode = mods;
 	m_action = action;
-	if (action == GLFW_PRESS) switch (button)
-	{
-	    case GLFW_MOUSE_BUTTON_LEFT:
-	    	//Mouse left button clicked!"
-	    	camera.mouse(button, mods, (int)lastX, (int)lastY);
-	    	break;
-	    case GLFW_MOUSE_BUTTON_MIDDLE:
-	    	//"Mouse middle button clicked!"
-	    	break;
-	    case GLFW_MOUSE_BUTTON_RIGHT:
-	    	//"Mouse right button clicked!"
-	    	std::cout << "Mouse Right Button Pressed! " << std::endl;
-	    	break;
-	    default:
-	    	return;
-	}
+
+	camera.mouse(button, !action, (int)lastX, (int)lastY);  //GLFW_PRESS与GLUT_DOWN值相反
+
+	//if (action == GLFW_PRESS) switch (button)
+	//{
+	//    case GLFW_MOUSE_BUTTON_LEFT:
+	//    	//Mouse left button clicked!"
+	//    	//camera.mouse(button, !action, (int)lastX, (int)lastY);
+	//    	break;
+	//    case GLFW_MOUSE_BUTTON_MIDDLE:
+	//    	//"Mouse middle button clicked!"
+	//    	break;
+	//    case GLFW_MOUSE_BUTTON_RIGHT:
+	//    	//"Mouse right button clicked!"
+	//    	std::cout << "Mouse Right Button Pressed! " << std::endl;
+	//    	break;
+	//    default:
+	//    	return;
+	//}
+	//if(action == GLFW_RELEASE) switch (button)
+	//{
+	//case GLFW_MOUSE_BUTTON_LEFT:
+	//	//std::cout << "Released!" << std::endl;
+	//	break;
+	//default:
+	//	return;
+	//}
 	return;
 }
 

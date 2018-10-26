@@ -160,6 +160,7 @@
     <Text Include="2.2.basic_lighting.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CallBack.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Depend.h" />
     <ClInclude Include="Mesh.h" />
@@ -173,12 +174,15 @@
     <ClInclude Include="testMesh.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CallBack.cpp" />
     <ClCompile Include="DrawTooth.cpp" />
     <ClCompile Include="glad.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="LNbasiclight.cpp" />
+    <ClCompile Include="LNblendingdiscard.cpp" />
+    <ClCompile Include="LNblendingsort.cpp" />
     <ClCompile Include="LNcamera.cpp" />
     <ClCompile Include="LNcameranew.cpp" />
     <ClCompile Include="LNdepthTest.cpp" />
@@ -194,6 +198,7 @@
     <ClCompile Include="LNmodel.cpp" />
     <ClCompile Include="LNmultipleLight.cpp" />
     <ClCompile Include="LNshader.cpp" />
+    <ClCompile Include="LNstenciltest.cpp" />
     <ClCompile Include="LNtranslate.cpp" />
     <ClCompile Include="LNtriangle.cpp" />
     <ClCompile Include="LNtexture.cpp" />
@@ -224,6 +229,10 @@
     <None Include="7.3.camera.vert" />
     <None Include="7.4.camera.frag" />
     <None Include="7.4.camera.vert" />
+    <None Include="Blendingdiscard.frag" />
+    <None Include="Blendingdiscard.vert" />
+    <None Include="Blendingsort.frag" />
+    <None Include="Blendingsort.vert" />
     <None Include="color.frag" />
     <None Include="color.vert" />
     <None Include="lamp.frag" />
@@ -240,6 +249,9 @@
     <None Include="lightspecular.vert" />
     <None Include="multiplelight.frag" />
     <None Include="multiplelight.vert" />
+    <None Include="Stencilsinglecolor.frag" />
+    <None Include="StencilTest.frag" />
+    <None Include="Stenciltest.vert" />
     <None Include="test.vert" />
     <None Include="tooth.frag" />
     <None Include="tooth.vert" />
