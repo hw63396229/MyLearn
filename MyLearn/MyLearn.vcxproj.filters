@@ -154,6 +154,15 @@
     <ClCompile Include="LNblendingsort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LNframebuffers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNcubemaps_skybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNcubemaps_environment_mapping.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="6.3.coordinate_systems.vert" />

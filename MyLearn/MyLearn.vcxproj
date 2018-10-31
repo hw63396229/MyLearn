@@ -185,7 +185,10 @@
     <ClCompile Include="LNblendingsort.cpp" />
     <ClCompile Include="LNcamera.cpp" />
     <ClCompile Include="LNcameranew.cpp" />
+    <ClCompile Include="LNcubemaps_environment_mapping.cpp" />
+    <ClCompile Include="LNcubemaps_skybox.cpp" />
     <ClCompile Include="LNdepthTest.cpp" />
+    <ClCompile Include="LNframebuffers.cpp" />
     <ClCompile Include="LNGLcoordinate.cpp" />
     <ClCompile Include="LNlightCastDirection.cpp" />
     <ClCompile Include="LNlightCastPoint.cpp" />
