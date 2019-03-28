@@ -25,3 +25,6 @@ extern bool firstMouse;
 // timing
 extern float deltaTime;
 extern float lastFrame;
+
+//light
+extern glm::vec3 lightPos;

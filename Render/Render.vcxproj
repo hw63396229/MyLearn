@@ -157,6 +157,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CallBack.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraEuler.h" />
     <ClInclude Include="DrawToothNormal.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CallBack.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraEuler.cpp" />
     <ClCompile Include="DrawToothNormal.cpp" />

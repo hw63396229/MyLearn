@@ -155,11 +155,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="test.frag" />
-    <Text Include="ReadMe.txt" />
-    <Text Include="2.2.basic_lighting.vert" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="CallBack.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Depend.h" />
@@ -180,6 +175,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="LNantialiasing.cpp" />
+    <ClCompile Include="LNasteroids.cpp" />
+    <ClCompile Include="LNasteroidsinstanced.cpp" />
     <ClCompile Include="LNbasiclight.cpp" />
     <ClCompile Include="LNblendingdiscard.cpp" />
     <ClCompile Include="LNblendingsort.cpp" />
@@ -189,7 +187,12 @@
     <ClCompile Include="LNcubemaps_skybox.cpp" />
     <ClCompile Include="LNdepthTest.cpp" />
     <ClCompile Include="LNframebuffers.cpp" />
+    <ClCompile Include="LNgeometryshaderexploding.cpp" />
+    <ClCompile Include="LNgeometryshaderhouse.cpp" />
+    <ClCompile Include="LNgeometryshadernormal.cpp" />
     <ClCompile Include="LNGLcoordinate.cpp" />
+    <ClCompile Include="LNglslubo.cpp" />
+    <ClCompile Include="LNinstancequads.cpp" />
     <ClCompile Include="LNlightCastDirection.cpp" />
     <ClCompile Include="LNlightCastPoint.cpp" />
     <ClCompile Include="LNlightCastSpot.cpp" />
@@ -219,45 +222,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="1.1.depth_testing.frag" />
-    <None Include="1.1.depth_testing.vert" />
-    <None Include="2.2.basic_lighting.frag" />
-    <None Include="3.1.lamp.frag" />
-    <None Include="3.1.lamp.vert" />
-    <None Include="3.1.materials.frag" />
-    <None Include="3.1.materials.vert" />
-    <None Include="6.3.coordinate_systems.frag" />
-    <None Include="6.3.coordinate_systems.vert" />
-    <None Include="7.3.camera.frag" />
-    <None Include="7.3.camera.vert" />
-    <None Include="7.4.camera.frag" />
-    <None Include="7.4.camera.vert" />
-    <None Include="Blendingdiscard.frag" />
-    <None Include="Blendingdiscard.vert" />
-    <None Include="Blendingsort.frag" />
-    <None Include="Blendingsort.vert" />
-    <None Include="color.frag" />
-    <None Include="color.vert" />
-    <None Include="lamp.frag" />
-    <None Include="lamp.vert" />
-    <None Include="lightcastdirection.frag" />
-    <None Include="lightcastdirection.vert" />
-    <None Include="lightcastpoint.frag" />
-    <None Include="lightcastpoint.vert" />
-    <None Include="lightdiffuse.frag" />
-    <None Include="lightdiffuse.vert" />
-    <None Include="lightexercise.frag" />
-    <None Include="lightexercise.vert" />
-    <None Include="lightspecular.frag" />
-    <None Include="lightspecular.vert" />
-    <None Include="multiplelight.frag" />
-    <None Include="multiplelight.vert" />
-    <None Include="Stencilsinglecolor.frag" />
-    <None Include="StencilTest.frag" />
-    <None Include="Stenciltest.vert" />
     <None Include="test.vert" />
-    <None Include="tooth.frag" />
-    <None Include="tooth.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

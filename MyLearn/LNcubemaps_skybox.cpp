@@ -2,7 +2,7 @@
 #include "Depend.h"
 #include "CallBack.h"
 
-int main()
+int cubeskybox()
 {
 	// glfw: initialize and configure
 	glfwInit();

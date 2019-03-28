@@ -45,6 +45,9 @@
     <ClInclude Include="CameraEuler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CallBack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -69,6 +72,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TestMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CallBack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

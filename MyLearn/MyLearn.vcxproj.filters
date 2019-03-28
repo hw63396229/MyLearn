@@ -15,11 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-    <Text Include="2.2.basic_lighting.vert" />
-    <Text Include="test.frag" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -163,48 +158,34 @@
     <ClCompile Include="LNcubemaps_environment_mapping.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LNglslubo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNgeometryshaderhouse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNgeometryshaderexploding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNgeometryshadernormal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNinstancequads.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNasteroids.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNasteroidsinstanced.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LNantialiasing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="6.3.coordinate_systems.vert" />
-    <None Include="6.3.coordinate_systems.frag" />
-    <None Include="7.3.camera.vert" />
-    <None Include="7.3.camera.frag" />
-    <None Include="7.4.camera.vert" />
-    <None Include="7.4.camera.frag" />
-    <None Include="color.vert" />
-    <None Include="color.frag" />
-    <None Include="lamp.vert" />
-    <None Include="lamp.frag" />
-    <None Include="2.2.basic_lighting.frag" />
     <None Include="test.vert">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="3.1.materials.vert" />
-    <None Include="3.1.materials.frag" />
-    <None Include="3.1.lamp.frag" />
-    <None Include="3.1.lamp.vert" />
-    <None Include="lightdiffuse.vert" />
-    <None Include="lightdiffuse.frag" />
-    <None Include="lightspecular.vert" />
-    <None Include="lightspecular.frag" />
-    <None Include="lightexercise.vert" />
-    <None Include="lightexercise.frag" />
-    <None Include="lightcastdirection.vert" />
-    <None Include="lightcastdirection.frag" />
-    <None Include="lightcastpoint.vert" />
-    <None Include="lightcastpoint.frag" />
-    <None Include="multiplelight.vert" />
-    <None Include="multiplelight.frag" />
-    <None Include="1.1.depth_testing.frag" />
-    <None Include="1.1.depth_testing.vert" />
-    <None Include="tooth.vert" />
-    <None Include="tooth.frag" />
-    <None Include="StencilTest.frag" />
-    <None Include="Stenciltest.vert" />
-    <None Include="Stencilsinglecolor.frag" />
-    <None Include="Blendingdiscard.frag" />
-    <None Include="Blendingdiscard.vert" />
-    <None Include="Blendingsort.vert" />
-    <None Include="Blendingsort.frag" />
   </ItemGroup>
 </Project>
